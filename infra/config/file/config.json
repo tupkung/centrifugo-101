@@ -16,5 +16,7 @@
     "allow_history_for_subscriber": true,
     "allow_history_for_anonymous": true,
     "allow_presence_for_subscriber": true,
-    "allow_presence_for_anonymous": true
+    "allow_presence_for_anonymous": true,
+    "proxy_rpc_endpoint": "http://host.docker.internal:3000/rpc",
+    "proxy_connect_endpoint": "http://host.docker.internal:3000/connect"
 }
