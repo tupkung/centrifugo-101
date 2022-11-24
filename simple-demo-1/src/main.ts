@@ -7,6 +7,11 @@ const counterDiv = document.createElement("div");
 counterDiv.id = "counter";
 counterDiv.innerHTML = "counter is 0";
 
-app!.append(counterDiv);
+const countBtn = document.createElement("button");
+countBtn.id = "countbtn";
+countBtn.innerHTML = "Count";
 
-subscribeChannel(counterDiv);
+app!.append(counterDiv);
+app!.append(countBtn);
+
+subscribeChannel(counterDiv, countBtn);

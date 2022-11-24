@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centrifugo chat</title>
+</head>
+<body>
+    <div>
+        <textarea name="chatbox" id="chatbox" cols="120" rows="20"></textarea>
+    </div>
+    <div style="margin-top:15px;">
+        <label for="username">Username : </label>
+        <input id="username" name="username" value="anonymous"/>
+    </div>
+    <div style="margin-top:15px;">
+        <form id="messageform">
+            <input id="messagebox" value=""/>
+            <button type="submit" id="sendBtn">send</button>
+        </form>
+    </div>
+    <script type="module" src="/src/chat/main.ts"></script>
+</body>
+</html>

@@ -1,6 +1,5 @@
 import { Centrifuge } from "centrifuge";
 
-var counter = 0;
 
 const centrifuge = new Centrifuge('wss://socket.superrich.kaileak.com/connection/websocket', {
     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMDAxIn0.c1_mzBOchMPIBCXeY1m8cuPKaqhAAhG16eIpGKFKrBM"
@@ -14,15 +13,14 @@ centrifuge.on('connecting', function(ctx) {
     console.log(`disconnected: ${ctx.code}, ${ctx.reason}`);
 }).connect();
 
-const sub = centrifuge.newSubscription("gossip:counter", {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsIjoiZ29zc2lwOmNvdW50ZXIiLCJzdWIiOiJ1c2VyMDAxIn0.K3xQpJfKpyuiJrR5A3vXZM6wGPNhel2hyVMzhI7KMnc"
+const sub = centrifuge.newSubscription("gossip:greeting", {
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsIjoiZ29zc2lwOmdyZWV0aW5nIiwiZXhwIjoxNjY5MjU5Mjc0LCJzdWIiOiJ1c2VyMDAxIn0.stEFyww2Y9Rrjc0TU-Owxk-w4ITAVS2YFaXfk3KvJq4"
 });
 
-export function subscribeChannel(element: HTMLDivElement, countbtn: HTMLButtonElement) {
+export function initialChat(chatbox: HTMLTextAreaElement , sendBtn: HTMLFormElement, messagebox: HTMLInputElement, username: HTMLInputElement ) {
     sub.on('publication', function(ctx) {
-        element.innerHTML = `counter is ${ctx.data.value}`;
-        document.title = ctx.data.value;
-        counter = ctx.data.value;
+        chatbox.value = `${chatbox.value} \n ${new Date().toLocaleString('th-TH')} - ${ctx.data.username} : ${ctx.data.value}`;
+        chatbox.scrollTop = chatbox.scrollHeight;
     }).on('subscribing', function(ctx) {
         console.log(`subscribing: ${ctx.code}, ${ctx.reason}`);
     }).on('subscribed', function(ctx) {
@@ -31,11 +29,13 @@ export function subscribeChannel(element: HTMLDivElement, countbtn: HTMLButtonEl
         console.log(`unsubscribed: ${ctx.code}, ${ctx.reason}`)
     }).subscribe();
 
-    countbtn.addEventListener("click", (ev: MouseEvent) => {
+    sendBtn.addEventListener("submit", (ev: SubmitEvent) => {
         ev.preventDefault();
         sub.publish({
-            "value": counter + 1
+                "value": messagebox.value,
+                "username": username.value
+        }).then(function(){
+            messagebox.value = "";
         });
     });
-
 }
