@@ -1,0 +1,20 @@
+{
+    "token_hmac_secret_key": "my_secret",
+    "api_key": "my_api_key",
+    "admin_password": "P@ssw0rd",
+    "admin_secret": "P@ssw0rd",
+    "admin": true,
+    "allowed_origins": ["*"],
+    "presence": true,
+    "history_size": 10,
+    "history_ttl": "300s",
+    "force_recovery": true,
+    "allow_subscribe_for_client": true,
+    "allow_subscribe_for_anonymous": true,
+    "allow_publish_for_subscriber": true,
+    "allow_publish_for_anonymous": true,
+    "allow_history_for_subscriber": true,
+    "allow_history_for_anonymous": true,
+    "allow_presence_for_subscriber": true,
+    "allow_presence_for_anonymous": true
+}
