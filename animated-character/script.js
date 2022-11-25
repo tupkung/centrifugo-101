@@ -14,7 +14,7 @@ const characters = [];
 let charId = new Date().getTime();
 
 const charIdStr = localStorage.getItem("char_id");
-if (charId == null) {
+if (charIdStr == null) {
     localStorage.setItem("char_id", charId.toString());
 } else {
     charId = Number(charIdStr);
